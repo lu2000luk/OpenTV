@@ -68,6 +68,6 @@
   </div>
 
   <div class="mainview rounded w-full h-full">
-    <iframe src="https://google.com/" title="App Window" frameborder="0" class="w-full h-full">Oppsie, iFrames are not supported.</iframe>
+    <iframe src="http://example.com" title="App Window" frameborder="0" class="w-full h-full">Oppsie, iFrames are not supported.</iframe>
   </div>
 </div>
