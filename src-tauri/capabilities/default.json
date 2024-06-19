@@ -17,6 +17,8 @@
     "shell:allow-open",
     "cors-fetch:default",
     "shell:default",
-    "shell:allow-open"
+    "shell:allow-open",
+    "webview:allow-internal-toggle-devtools",
+    "webview:default"
   ]
 }

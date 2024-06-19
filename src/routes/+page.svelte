@@ -3,6 +3,7 @@
 
   import AppCard from "$lib/components/app-card.svelte";
   import { onMount } from "svelte";
+  import { invoke } from '@tauri-apps/api/core'
 
   onMount(() => {
     function keyPressed(e) {
@@ -45,9 +46,38 @@
         // don't do native processing of the up or down arrow (page scrolling)
         e.preventDefault;
     }
+
+    if (e.keyCode == '37' || e.keyCode == '39') {
+      if (e.keyCode == '37') {
+        invoke('resize_webview', { _size: webview_sizes.closed });
+      } else {
+        invoke('resize_webview', { _size: webview_sizes.open });
+
+      }
+    }
 }
     document.onkeydown = keyPressed;
   });
+
+  var screenSize;
+  invoke('get_size').then((message) => {screenSize = message; console.log(screenSize); generate_webview_sizes();});
+
+  var webview_sizes = {};
+
+  function generate_webview_sizes() {
+    webview_sizes = {
+      "closed": {
+        width: screenSize.width,
+        height: screenSize.height
+      },
+      "open": {
+        width: screenSize.width / 5 * 4,
+        height: screenSize.height
+      }
+    }
+  }
+
+
 </script>
 
 <div class="flex h-full w-full">
