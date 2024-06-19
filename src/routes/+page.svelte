@@ -51,7 +51,7 @@
 </script>
 
 <div class="flex h-full w-full">
-  <div class="scene h-full flex flex-col-reverse p-4">
+  <div class="scene h-full flex flex-col-reverse p-4 w-1/5 justify-center">
     <div class="flex w-full overflow-x-hidden overflow-y-hidden scroll-smooth">
       <div class="">
         <AppCard index={0}/>
@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class="mainview rounded w-full h-full">
-    <iframe src="http://example.com" title="App Window" frameborder="0" class="w-full h-full">Oppsie, iFrames are not supported.</iframe>
+  <div class="mainview rounded w-full h-full bg-transparent">
+    <!-- <iframe src="http://example.com" title="App Window" frameborder="0" class="w-full h-full">Oppsie, iFrames are not supported.</iframe> -->
   </div>
 </div>
