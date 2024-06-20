@@ -2,9 +2,11 @@
 // @ts-nocheck
 
     import { onMount } from "svelte";
+    import { invoke } from '@tauri-apps/api/core'
 
     export let title = "My App";
     export let index = 0;
+    export let url = "https://google.com/"
 
     let card;
 
@@ -13,6 +15,10 @@
             card.focus();
         }
     });
+
+    function navigate() {
+      invoke('navigate', { url: url })
+    }
 </script>
 
 <style>
@@ -20,7 +26,7 @@
 </style>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div class="group w-[300px] h-[200px] rounded-xl shadow-lg cursor-pointer transition-all duration-300 ease-in-out transform-gpu focus:scale-105 focus:shadow-2xl py-4 px-3" tabindex="-{index}" bind:this={card} id="app_card_index_{index}" data-selectlist="true" data-prev="app_card_index_{index-1}" data-next="app_card_index_{index+1}">
+<div class="group w-[300px] h-[200px] rounded-xl shadow-lg cursor-pointer transition-all duration-300 ease-in-out transform-gpu focus:scale-105 focus:shadow-2xl py-4 px-3" tabindex="-{index}" bind:this={card} id="app_card_index_{index}" data-selectlist="true" data-prev="app_card_index_{index-1}" data-next="app_card_index_{index+1}" on:focus={navigate}>
   <div class="relative w-full h-full rounded-xl overflow-hidden group-focus:rotate-3 group-focus:-translate-y-1 group-focus:translate-x-1 transition-transform duration-300 ease-in-out">
     <img
       src="https://unsplash.it/300/200?seed={index}"
