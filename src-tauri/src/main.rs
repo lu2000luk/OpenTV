@@ -4,12 +4,12 @@
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command// Add `monitor` to the import list
 
 use tauri::{AppHandle, LogicalPosition, LogicalSize, Manager, Url, WebviewUrl};
-use tauri::webview::WebviewBuilder;
 
 const INIT_SCRIPT: &str = r#"
-
+    console.log('This web application is being runned inside of a Tauri Webview')
+    console.log('DO NOT PASTE ANY UNTRUSTED CODE HERE')
+    console.log('If you know what you are doing you should help out the project on Github (=')
 "#;
-
 
 fn main() {
     tauri::Builder::default()
@@ -63,10 +63,12 @@ fn reposition_webview(app: AppHandle, _pos: LogicalPosition<u32>) {
 }
 
 #[tauri::command]
-fn navigate(app: AppHandle, _url: Url) {
+async fn navigate(app: AppHandle, _url: Url) -> String {
     let mut main_webview = app.get_webview("main1").unwrap();
 
     main_webview.navigate(_url);
+
+    "done".into()
 }
 
 #[tauri::command]
